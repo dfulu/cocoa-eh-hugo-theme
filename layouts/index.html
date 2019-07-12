@@ -8,6 +8,20 @@
                 </div>
             {{ end }}
 
+            <div class="best-posts">
+            {{ $nbPosts := len (where .Data.Pages "Params.best" true) }}
+            {{ if gt $nbPosts 0 }}
+                <div class="page-heading">highlights and news</div>
+                <ul>
+                {{ range sort .Data.Pages "Date" "desc" }}
+                    {{ if eq .Params.best true }}
+                        {{ partial "li.html" . }}
+                    {{ end }}
+                {{ end }}
+                </ul>
+            {{ end }}
+            </div>
+
             {{ if isset .Site.Params "latestpostcount" }}
                 <div class="posts">
                 {{ $nbPosts := len (where .Data.Pages "Section" "blog") }}
@@ -29,19 +43,6 @@
                 </div>
             {{ end }}
 
-            <div class="best-posts">
-            {{ $nbPosts := len (where .Data.Pages "Params.best" true) }}
-            {{ if gt $nbPosts 0 }}
-                <div class="page-heading">Best posts</div>
-                <ul>
-                {{ range sort .Data.Pages "Date" "desc" }}
-                    {{ if eq .Params.best true }}
-                        {{ partial "li.html" . }}
-                    {{ end }}
-                {{ end }}
-                </ul>
-            {{ end }}
-            </div>
         </div>
     </div>
 </div>
