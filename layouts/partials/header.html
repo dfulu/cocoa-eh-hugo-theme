@@ -4,8 +4,8 @@
 {{ partial "head.html" . }}
 
 <body>
+{{ if and (or (.Site.Params.small_banner_logo) (and (.IsPage) (not (.Site.Params.large_banner_logo)))) ( ne .Title .Site.Title ) }}
 
-{{ if (or (.Site.Params.small_banner_logo) (and (.IsPage) (not (.Site.Params.large_banner_logo)))) }}
 <div class="header column">
 {{ else }}
 <div class="header header-home column">
